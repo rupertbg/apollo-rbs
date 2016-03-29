@@ -36,8 +36,8 @@ Edit server.js to suit your needs.
     global.receptionemail = "email-address-where-new-bookings-go"
     
 To toggle debug mode:
-    server.js - `global.debugger = boolean`
-    static/scripts/rbs/rbs.js - `window.debug = boolean`
+- server.js - `global.debugger = boolean`
+- static/scripts/rbs/rbs.js - `window.debug = boolean`
 
 Run `npm install` to make sure all the modules are installed and up-to-date
 To kick off the server run `node server.js`
