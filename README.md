@@ -1,6 +1,13 @@
 # Apollo Resource Booking System
 A resource booking system for the enterprise, written in JavaScript.
 
+## Features
+
+- CALDAV client provided by [dav](https://www.npmjs.com/package/dav)
+- Custom calendar viewer written on [FullCalendar](http://fullcalendar.io/)
+- [Socket](http://socket.io/) for realtime notification of calendar changes and other bi-directional data
+- Data analysis of CALDAV events charted in [dc.js](https://dc-js.github.io/dc.js/)
+
 ## Requirements 
 - a CALDAV server (DAViCAL (http://www.davical.org/) works great)
 - node.js & npm
@@ -28,10 +35,3 @@ Edit server.js to suit your needs.
 Run `npm install` to make sure all the modules are installed and up-to-date
 To kick off the server run `node server.js`
 Default port is 8080 to suit development
-
-## Features
-
-- CALDAV client provided by [dav](https://www.npmjs.com/package/dav)
-- Custom calendar viewer written on [FullCalendar](http://fullcalendar.io/)
-- [Socket](http://socket.io/) for realtime notification of calendar changes and other bi-directional data
-- Data analysis of CALDAV events charted in [dc.js](https://dc-js.github.io/dc.js/)
