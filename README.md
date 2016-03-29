@@ -8,7 +8,7 @@ A resource booking system for the enterprise, written in JavaScript. Currently u
 - [Socket](http://socket.io/) for realtime notification of calendar changes and other bi-directional data
 - Data analysis of CALDAV events charted in [dc.js](https://dc-js.github.io/dc.js/)
 - Responsive design with separate mobile, tablet and desktop views
-- Thorough debug console logging
+- Thorough debug logging can be toggled for browser and node console
 - Demo content included (written for University of Otago, Wellington)
 
 ## Requirements 
@@ -17,8 +17,6 @@ A resource booking system for the enterprise, written in JavaScript. Currently u
 - Your own content
 
 ## Usage
-
-Check [Wiki](https://github.com/rupertbg/apollo-rbs/wiki) for thorough information.
 
 Edit server.js to suit your needs.
 
@@ -48,7 +46,11 @@ To kick off the server run `node server.js`
 
 Default port is 8080
 
+Check [Wiki](https://github.com/rupertbg/apollo-rbs/wiki) for thorough information.
+
 ## Credits
+
+Work unique to this project is made available under GPL license. All other licenses as stated or included in filesystem.
 
 - [FullCalendar Scheduler](http://fullcalendar.io/scheduler/) used under GPL license.
 - [Socket](http://socket.io) used under MIT license.
