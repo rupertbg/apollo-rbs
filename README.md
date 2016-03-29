@@ -33,7 +33,7 @@ Edit server.js to suit your needs.
             pass: "password"
 
     Set an endpoint for the booking emails to go
-    `global.receptionemail = "email-address-where-new-bookings-go"`
+    global.receptionemail = "email-address-where-new-bookings-go"
     
 To toggle debug mode:
     server.js - `global.debugger = boolean`
