@@ -18,6 +18,8 @@ A resource booking system for the enterprise, written in JavaScript. Currently u
 
 ## Usage
 
+Check [Wiki](https://github.com/rupertbg/apollo-rbs/wiki) for thorough information.
+
 Edit server.js to suit your needs.
 
     Set your CALDAV credentials
