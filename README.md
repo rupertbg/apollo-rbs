@@ -1,5 +1,5 @@
 # Apollo Resource Booking System
-A resource booking system for the enterprise, written in JavaScript.
+A resource booking system for the enterprise, written in JavaScript. Currently under active development and not considered finished.
 
 ## Features
 
