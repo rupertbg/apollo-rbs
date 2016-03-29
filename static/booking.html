@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="./styles/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" />
+  <link href="./styles/kendo-ui/kendo.common-material.core.min.css" rel="stylesheet" />
+  <link href="./styles/kendo-ui/kendo.material.min.css" rel="stylesheet" />
+  <link href="./styles/fullcalendar.min.css" rel="stylesheet" />
+  <link href="./styles/fullcalendar.print.css" rel="stylesheet" media="print" />
+  <link href="./styles/scheduler.min.css" rel="stylesheet" />
+  <link href="./styles/normalise.css" rel="stylesheet" />
+  <link href="./styles/fonts.css" rel="stylesheet" />
+  <link href="./styles/rbs.css" rel="stylesheet" />
+
+  <script type="text/javascript" src="./scripts/jquery.min.js"></script>
+  <script type="text/javascript" src="./scripts/socket.io.js"></script>
+  <script type="text/javascript" src="./scripts/kendo/kendo.ui.core.min.js"></script>
+  <script type="text/javascript" src="./scripts/kendo/kendo.culture.en-NZ.min.js"></script>
+  <script type="text/javascript" src="./scripts/jquery.sizes.js"></script>
+  <script type="text/javascript" src="./scripts/jquery.valjs.min.js"></script>
+  <script type="text/javascript" src="./scripts/jquery-ui/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./scripts/moment.min.js"></script>
+  <script type="text/javascript" src="./scripts/moment-range.min.js"></script>
+  <script type="text/javascript" src="./scripts/fullcalendar.custom.js"></script>
+  <script type="text/javascript" src="./scripts/scheduler.min.js"></script>
+  <script type="text/javascript" src="./scripts/ical.min.js"></script>
+  <script type="text/javascript" src="./scripts/rbs/rbs.js"></script>
+  <script type="text/javascript" src="./scripts/rbs/rbs-calendars.js"></script>
+  <script type="text/javascript" src="./scripts/rbs/rbs-booking.js"></script>
+
+  <title>Resource Booking System</title>
+
+</head>
+<body>
+
+  <header class="header">
+
+   <a href="/"><h1>Apollo</h1></a>
+
+   <div id="navbuttons">
+     <a href="/">Home</a>
+     <a href="rooms.html">Room Information</a>
+     <a href="data.html">Data Analytics</a>
+     <a href="calendar.html">Calendar</a>
+     <a href="http://www.otago.ac.nz/its/forms/otago106010.html" target="_blank">iPad Bookings</a>
+     <a href="booking.html">Make a Booking</a>
+   </div>
+
+  </header>
+
+  <div id="formheader">
+    <h1>Resource Booking Form</h1>
+    <h2>This form is for staff and students of the University of Otago. External users, including CCDHB staff, please us this <a href="http://www.otago.ac.nz/wellington/about/services/conferencecentre/enquiries/">enquiry form.</a>
+    <br>Once your request has been submitted, reception will be in contact to confirm the booking.</h2>
+  </div>
+
+  <form id="mainform" action="/booking" method="post">
+
+    <fieldset id="contactinformation">
+      <legend>Contact Details</legend>
+
+      <div id="contactdetails">
+
+        <ul id="contact">
+      		<li><label for="contactname">Organiser Name</label><input id="contactname" class="noenter" placeholder="Required" type="text" name="contactname" required="required"></li>
+          <li><label for="contactdept">Department / Organisation</label><input id="contactdept" placeholder="Required" class="noenter" type="text" name="contactdept" required="required"></li>
+          <li><label for="contactnumber">Phone Number</label><input id="contactnumber" class="noenter" placeholder="Required" type="text" name="contactnumber" required="required"></li>
+          <li><label for="contactemail">Email Address</label><input id="contactemail" placeholder="Required" class="noenter" type="text" name="contactemail" required="required"></li>
+        </ul>
+
+      </div>
+
+      <!--Booking Request Template-->
+
+      <fieldset class="hidden vevent" id="newevent">
+        <legend>New Booking Request</legend>
+
+        <img id="removeevent" class="removeevent" src="./img/close.png" alt="Remove booking event">
+
+        <div id="veventcontainer">
+
+          <p id="miniloading">loading calendars.. please wait..</p>
+
+          <div id="containerdatetime">
+
+          </div>
+
+          <div id="typecontainer">
+
+            <div id="selectcontainer">
+
+              <div id="typeselect" class="k-content">
+                <p>Select a date and time to begin searching resources.</p>
+              </div>
+
+              <div id="typeoptions">
+
+              </div>
+
+              <div id="extratypeoptions">
+
+              </div>
+
+            </div>
+
+            <div id="roomsmessage">
+
+            </div>
+
+            <div id="bookingrooms">
+
+            </div>
+
+            <div id="resourcesmessage">
+
+            </div>
+
+            <div id="bookingresources">
+
+            </div>
+
+          </div>
+
+          <div id="resourcecal"></div>
+
+          <div id="veventdetails">
+
+          </div>
+
+          <div id="veventdescription">
+
+          </div>
+
+        </div>
+
+      </fieldset>
+
+      <!---END OF TEMPLATE--->
+
+      <div id="vevents"></div>
+
+    </fieldset>
+
+
+
+    <div id="formbuttons">
+      <button type="button" id="createevent" value="Add Booking Request">Add Booking Request</button>
+      <button type="button" value="Close" class="formclose formbutton">Close</button>
+      <button type="reset" value="Reset" class="formreset formbutton">Reset</button>
+      <button type="submit" value="Request Booking" class="formsubmit formbutton">Submit Request</button>
+    </div>
+
+  </form>
+
+  <div id="formfooter">
+  </div>
+
+  <div id="debug" class="hidden">
+    <div id="debugbar"></div>
+    <p class="debug">Debug Mode Enabled - Performance Degraded - Logs Available in Browser JavaScript Console</p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link href="./styles/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" />
+		<link href="./styles/kendo-ui/kendo.common-material.core.min.css" rel="stylesheet" />
+		<link href="./styles/kendo-ui/kendo.material.min.css" rel="stylesheet" />
+		<link href="./styles/fullcalendar.min.css" rel="stylesheet" />
+		<link href="./styles/fullcalendar.print.css" rel="stylesheet" media="print" />
+		<link href="./styles/scheduler.min.css" rel="stylesheet" />
+		<link href="./styles/normalise.css" rel="stylesheet" />
+		<link href="./styles/fonts.css" rel="stylesheet" />
+		<link href="./styles/rbs.css" rel="stylesheet" />
+
+		<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="./scripts/socket.io.js"></script>
+		<script type="text/javascript" src="./scripts/kendo/kendo.ui.core.min.js"></script>
+	  <script type="text/javascript" src="./scripts/kendo/kendo.culture.en-NZ.min.js"></script>
+		<script type="text/javascript" src="./scripts/bigSlide.js"></script>
+		<script type="text/javascript" src="./scripts/jquery.sizes.js"></script>
+		<script type="text/javascript" src="./scripts/jquery-ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="./scripts/moment.min.js"></script>
+		<script type="text/javascript" src="./scripts/fullcalendar.custom.js"></script>
+		<script type="text/javascript" src="./scripts/scheduler.min.js"></script>
+		<script type="text/javascript" src="./scripts/ical.min.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-calendars.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-main.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-resizing.js"></script>
+
+		<title>Resource Booking System</title>
+
+	</head>
+	<body>
+
+		<div id="loading">
+			<p>Receiving events from server... </p>
+		</div>
+
+		<div id="update">
+			<p>Calendar has been updated <span id="showupdate">refresh calendar..</span> </p>
+		</div>
+
+		<div id="error">
+			<p>Oops.. the server responded with an error! </p>
+		</div>
+
+	 	<header class="header">
+
+			<a href="/"><h1>Apollo</h1></a>
+
+			<div id="navbuttons">
+				<a href="/">Home</a>
+				<a href="rooms.html">Room Information</a>
+				<a href="data.html">Data Analytics</a>
+        <a href="calendar.html">Calendar</a>
+				<a href="http://www.otago.ac.nz/its/forms/otago106010.html" target="_blank">iPad Bookings</a>
+				<a href="booking.html">Make a Booking</a>
+			</div>
+
+		</header>
+
+		<section class="mainsection">
+
+			<div id="toolbartop">
+
+				<div id="toolbarbuttonsleft">
+					<button id="togglemenuleft">Date & View</button>
+					<button id="homeview">Default View</button>
+				</div>
+
+				<div id="toolbarbuttonsmiddle">
+					<button id="incprev" class="increment"><</button>
+					<div id="calendardate"></div>
+					<button id="incnext" class="increment">></button>
+				</div>
+
+				<div id="toolbarbuttonsright">
+					<button id="togglemenuright">Rooms & Resources</button>
+				</div>
+
+			</div>
+
+			<nav id="menuleft" class="panel" role="navigation">
+
+				<fieldset>
+
+					<legend><img width="25px" height="25px" src="./img/calendar.png" alt="Calendar Icon">Calendar Date</legend>
+
+					<div class="menubuttons">
+
+						<input type="text" id="dateselect">
+						<button id="today">Today</button>
+
+					</div>
+
+				</fieldset>
+
+				<fieldset>
+
+					<legend><img width="25px" height="25px" src="./img/agenda.png" alt="Agenda View Icon">Agenda Views</legend>
+
+					<div class="menubuttons">
+
+						<button class="viewchange" id="agendaDay">Day</button>
+						<button class="viewchange" id="agendaFiveDay">Five Day</button>
+						<button class="viewchange" id="agendaWeek">Week</button>
+						<button class="viewchange" id="month">Month</button>
+
+					</div>
+
+				</fieldset>
+
+				<fieldset>
+
+					<legend><img width="25px" height="25px" src="./img/timeline.png" alt="Timeline View Icon">Timeline Views</legend>
+
+					<div class="menubuttons">
+
+						<button class="viewchange" id="timelineDay">Day</button>
+						<button class="viewchange" id="timelineWeek">Week</button>
+						<button class="viewchange" id="timelineMonth">Month</button>
+
+					</div>
+
+				</fieldset>
+
+			</nav>
+
+			<div id="calendarcontainer">
+
+				<div id="maincalendar"></div>
+
+			</div>
+
+			<nav id="menuright" class="panel" role="navigation">
+
+				<fieldset>
+
+					<legend><img width="25px" height="25px" src="./img/search.png" alt="Meeting Icon">Resource Selector</legend>
+
+					<div class="menubuttons">
+						<select id="multiroom" multiple="multiple" data-placeholder="Select Rooms..."></select>
+						<button id="multiroomload">Load Selection</button>
+					</div>
+
+				</fieldset>
+
+				<fieldset>
+
+					<legend><img width="25px" height="25px" src="./img/meeting.png" alt="Meeting Icon">Resource Groups</legend>
+
+					<div class="menubuttons">
+						<button id="largerooms">Large Rooms</button>
+						<button id="mediumrooms">Medium Rooms</button>
+						<button id="smallrooms">Small Rooms</button>
+						<button id="vidconf">Video Conferencing Rooms</button>
+						<button id="vivid">Vivid Rooms & Trolleys</button>
+						<button id="lecture">Lectures & Conferences</button>
+					</div>
+
+				</fieldset>
+
+			</nav>
+
+			<div id="toolbarbottom">
+
+
+			</div>
+
+		</section>
+
+		<footer class="footer">
+
+		</footer>
+
+		<div id="debug" class="hidden">
+			<div id="debugbar"></div>
+			<p class="debug">Debug Mode Enabled - Performance Degraded - Logs Available in Browser JavaScript Console</p>
+		</div>
+
+	</body>
+</html>

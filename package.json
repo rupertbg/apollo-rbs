@@ -1,0 +1,48 @@
+{
+  "name": "rbs-node",
+  "version": "1.1.5",
+  "description": "A resource booking system based on FullCalendar (http://fullcalendar.io) and designed for the DAViCAL CALDAV server. This project uses the GPL license for FullCalendar and is released as open source with no warranties implied or given.",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^1.5.2",
+    "body-parser": "^1.15.0",
+    "d3": "^3.5.16",
+    "dav": "^1.7.8",
+    "express": "^4.13.4",
+    "http": "0.0.0",
+    "ical-generator": "^0.2.7",
+    "ical.js": "^1.1.2",
+    "ical2json": "^0.2.0",
+    "moment": "^2.12.0",
+    "moment-range": "^2.2.0",
+    "node-schedule": "^1.1.0",
+    "nodemailer": "^2.2.1",
+    "nodemailer-smtp-transport": "^2.4.1",
+    "redis": "^2.5.2",
+    "request": "^2.69.0",
+    "smtp-server": "^1.9.0",
+    "socket.io": "^1.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Calendar",
+    "Resource",
+    "Booking",
+    "jquery",
+    "FullCalendar"
+  ],
+  "author": "Rupert Bryant-Greene",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rupertbg/rbs-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rupertbg/rbs-node/issues"
+  },
+  "homepage": "https://github.com/rupertbg/rbs-node#readme"
+}

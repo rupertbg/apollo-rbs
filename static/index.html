@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+		<link href="./styles/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" />
+		<link href="./styles/jquery-ui/magnific-popup.css" rel="stylesheet" />
+		<link href="./styles/kendo-ui/kendo.common-material.core.min.css" rel="stylesheet" />
+		<link href="./styles/kendo-ui/kendo.material.min.css" rel="stylesheet" />
+		<link href="./styles/fullcalendar.min.css" rel="stylesheet" />
+		<link href="./styles/fullcalendar.print.css" rel="stylesheet" media="print" />
+		<link href="./styles/scheduler.min.css" rel="stylesheet" />
+		<link href="./styles/normalise.css" rel="stylesheet" />
+		<link href="./styles/dc.min.css" rel="stylesheet" />
+		<link href="./styles/fonts.css" rel="stylesheet" />
+		<link href="./styles/rbs.css" rel="stylesheet" />
+
+		<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="./scripts/socket.io.js"></script>
+		<script type="text/javascript" src="./scripts/kendo/kendo.ui.core.min.js"></script>
+	  <script type="text/javascript" src="./scripts/kendo/kendo.culture.en-NZ.min.js"></script>
+		<script type="text/javascript" src="./scripts/bigSlide.js"></script>
+		<script type="text/javascript" src="./scripts/jquery.sizes.js"></script>
+		<script type="text/javascript" src="./scripts/jquery-ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="./scripts/jquery-ui/jquery.magnific-popup.min.js"></script>
+		<script type="text/javascript" src="./scripts/moment.min.js"></script>
+		<script type="text/javascript" src="./scripts/fullcalendar.custom.js"></script>
+		<script type="text/javascript" src="./scripts/scheduler.min.js"></script>
+		<script type="text/javascript" src="./scripts/d3.min.js"></script>
+		<script type="text/javascript" src="./scripts/crossfilter.min.js"></script>
+		<script type="text/javascript" src="./scripts/dc.min.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-calendars.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-info.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-resizing.js"></script>
+
+		<title>Resource Booking System</title>
+
+	</head>
+	<body>
+
+	 	<header class="header">
+
+			<a href="/"><h1>Apollo</h1></a>
+
+			<div id="navbuttons">
+				<a href="/">Home</a>
+				<a href="rooms.html">Room Information</a>
+				<a href="data.html">Data Analytics</a>
+        <a href="calendar.html">Calendar</a>
+				<a href="http://www.otago.ac.nz/its/forms/otago106010.html" target="_blank">iPad Bookings</a>
+				<a href="booking.html">Make a Booking</a>
+			</div>
+
+		</header>
+
+    <section id="info">
+
+				<div id="resourceheader">
+					<img src="./img/logo.jpg" alt="UOW Logo"/>
+					<div id="resourceheadertext">
+						<h3>University of Otago, Wellington</h3>
+						<h1>Resource Booking System</h1>
+		        <h2>
+							Apollo is the Wellington campus booking system for use by Staff and Students of the University of Otago. <br>External users, including CCDHB staff, please use this <a href="http://www.otago.ac.nz/wellington/about/services/conferencecentre/enquiries/">enquiry form.</a>
+						</h2>
+					</div>
+				</div>
+				<div id="resourceinfo">
+					<h2>Haere mai, welcome</h2>
+					<p>
+						This system allows for booking of teaching spaces on level C & D as well as video conferencing on the Wellington campus. Information on the bookable spaces and resources can be found in the list to the left.
+						On other floors of the UOW campus are department rooms, information on these rooms can be found on the UOW intranet.
+					</p>
+					<h2>Frequently Asked Questions</h2>
+					<h3>Can I have a specific room layout for my booking?</h3>
+					<div id="RoomLayoutDetails">
+						<p>It is possible to have the room furniture setup as per your requirements. Please add any requirements into the extra information field when making a booking. Tables and chairs can be configured as required and tablet chairs are also available (subject to availability).</p>
+					</div>
+
+					<h3>Is technical support available?</h3>
+					<div id="TechnicalSupportDetails">
+						<p>Technical support is available for all internal bookings that occur during business hours. All out-of-hours bookings requiring AV/IT support must be made at least 2 weeks (10 working days) in advance of the actual date, and support is subject to staff availability.</p>
+					</div>
+
+					<h3>How do I book video conferencing?</h3>
+					<div id="VCDetails">
+						<p>Video Conferencing needs to be booked via <a href="/booking.html">this form</a>, whether for a room or with a Vivid trolley. If you have any questions or queries, please <a href="mailto:videoconf.uow@otago.ac.nz">email the video conferencing support team</a></p>
+					</div>
+
+
+					<h3>I require additional equipment for my booking. What equipment do you provide?</h3>
+					<p>You can request additional AV equipment while making a room booking with <a href="/booking.html">this form</a>. To book a training session or if you need more information on the above AV equipment, contact the AV Support Technician on extension: 6891 or <a href="mailto:cavsupport.uow@otago.ac.nz">e-mail CAV support</a>. The following equipment is available: </p>
+
+					<div id="addDetails">
+						<ul>
+							<li>Audioconferencing Phones</li>
+								<p>Audioconferencing phones are available from reception. They must be collected from reception and returned by the person who made the booking. If you require any assistance setting up the audioconference phone, please advise reception at the time of the booking.</p>
+							<li>Blu-Ray Player</li>
+								<p>Room C06 has a Blu-Ray player built into the lectern PC.</p>
+							<!--<li>Profcast Software</li>
+								<p>These rooms have profcast software installedon the inbuilt computers to allow a podcast of your audio and presentation to be made. There are also 2 laptops with the software. Please contact Michael Roberts (<a href="mailto:michael.roberts@otago.ac.nz">michael.roberts@otago.ac.nz</a>), the school's Digital Media Producer. </p>-->
+							<li>Audience Response System</li>
+								<p>We have a portable Audience Response System which can be used in any of the teaching rooms and Lecture Theatres. If you would like to use the Audience Response System, discuss your requirements by calling the AV Support Technician on extension: 6891 or <a href="mailto:cavsupport.uow@otago.ac.nz">e-mail CAV support</a>. For more information on Audience Response System, please see the <a href="http://www.h-itt.com/overview.html">H-ITT website</a></p>
+							<li>AV Inputs</li>
+								<p>All room have VGA connectors and some also have HDMI. You will need to provide your own Video Adapter if you have a Mac laptop.</p>
+							<li>Laptops</li>
+								<p>Laptops are available for use within the level C and D teaching rooms. Laptops must be collected from reception and returned by the person who booked the laptop. The responsibility of the laptops is with the person who books them.</p>
+							<li>Smartboards</li>
+								<p>C03 and C04 are fitted with Smartboards. For more information on Smartboards, visit the <a href="http://en.wikipedia.org/wiki/SMART_Board_interactive_whiteboard">Wikipedia page.</a></p>
+							<li>Network Outlets</li>
+								<p>A limited number are connected, but more are available and can be connected if required. Please call the Helpdesk 0800 479 888 to request additional live network ports. </p>
+						</ul>
+					</div>
+				</div>
+
+    </section>
+
+    <footer>
+
+    </footer>
+
+    <div id="debug" class="hidden">
+      <div id="debugbar"></div>
+      <p class="debug">Debug Mode Enabled - Performance Degraded - Logs Available in Browser JavaScript Console</p>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+		<link href="./styles/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" />
+		<link href="./styles/jquery-ui/magnific-popup.css" rel="stylesheet" />
+		<link href="./styles/jquery.dynatable.css" rel="stylesheet" />
+		<link href="./styles/kendo-ui/kendo.common-material.core.min.css" rel="stylesheet" />
+		<link href="./styles/kendo-ui/kendo.material.min.css" rel="stylesheet" />
+		<link href="./styles/fullcalendar.min.css" rel="stylesheet" />
+		<link href="./styles/fullcalendar.print.css" rel="stylesheet" media="print" />
+		<link href="./styles/scheduler.min.css" rel="stylesheet" />
+		<link href="./styles/normalise.css" rel="stylesheet" />
+		<link href="./styles/dc.min.css" rel="stylesheet" />
+		<link href="./styles/fonts.css" rel="stylesheet" />
+		<link href="./styles/rbs.css" rel="stylesheet" />
+
+		<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="./scripts/socket.io.js"></script>
+		<script type="text/javascript" src="./scripts/kendo/kendo.ui.core.min.js"></script>
+	  <script type="text/javascript" src="./scripts/kendo/kendo.culture.en-NZ.min.js"></script>
+		<script type="text/javascript" src="./scripts/bigSlide.js"></script>
+		<script type="text/javascript" src="./scripts/jquery.sizes.js"></script>
+		<script type="text/javascript" src="./scripts/jquery.dynatable.js"></script>
+		<script type="text/javascript" src="./scripts/jquery-ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="./scripts/jquery-ui/jquery.magnific-popup.min.js"></script>
+		<script type="text/javascript" src="./scripts/moment.min.js"></script>
+		<script type="text/javascript" src="./scripts/moment-range.min.js"></script>
+		<script type="text/javascript" src="./scripts/fullcalendar.custom.js"></script>
+		<script type="text/javascript" src="./scripts/scheduler.min.js"></script>
+		<script type="text/javascript" src="./scripts/d3.min.js"></script>
+		<script type="text/javascript" src="./scripts/crossfilter.min.js"></script>
+		<script type="text/javascript" src="./scripts/dc.min.js"></script>
+		<script type="text/javascript" src="./scripts/papaparse.min.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-calendars.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-data.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-resizing.js"></script>
+
+		<title>Resource Booking System</title>
+
+	</head>
+	<body>
+
+    <div id="loading">
+      <p>Graphing data... </p>
+    </div>
+
+	 	<header class="header">
+
+			<a href="/"><h1>Apollo</h1></a>
+
+			<div id="navbuttons">
+				<a href="/">Home</a>
+				<a href="rooms.html">Room Information</a>
+				<a href="data.html">Data Analytics</a>
+        <a href="calendar.html">Calendar</a>
+				<a href="http://www.otago.ac.nz/its/forms/otago106010.html" target="_blank">iPad Bookings</a>
+				<a href="booking.html">Make a Booking</a>
+			</div>
+
+		</header>
+
+    <section id="databody">
+
+			<div id="bookings" class="datagroup">
+
+				<h2 class="chartsheader">Unique Bookings</h2>
+
+				<div id="bookingsperday"></div>
+
+				<div class="piecharts">
+					<div id='bookingstypepiechart'><h3>Resource Type</h3></div>
+				  <div id='bookingspiechart'><h3>Resource</h3></div>
+			  </div>
+
+			</div>
+
+			<div id="hours" class="datagroup">
+
+				<h2 class="chartsheader">Booked Hours</h2>
+
+				<div id="usagebyhour"></div>
+
+				<div class="piecharts">
+					<div id='hourtypepiechart'><h3>Resource Type</h3></div>
+					<div id='hourpiechart'><h3>Resource</h3></div>
+				</div>
+
+			</div>
+
+			<div id="tablecontainer">
+				<table id="datatable">
+				  <thead>
+				  <tr class="header">
+						<th class="data-table-col" data-dynatable-column="start">Start</th>
+				    <th class="data-table-col" data-dynatable-column="end">End</th>
+				    <th class="data-table-col" data-dynatable-column="duration">Duration (Hours)</th>
+						<th class="data-table-col" data-dynatable-column="title">Title</th>
+				  </tr>
+				  </thead>
+				  <tbody>
+				  </tbody>
+				  <tfoot>
+				    <th></th>
+				    <th></th>
+				  </tfoot>
+				</table>
+			</div>
+			<div class="csvexport">
+				<p><img width="15px" src="./img/csv.png" alt="Export as CSV"/>
+					CSV Export (2500 Records Max.)
+				</p>
+			</div>
+
+    </section>
+
+    <footer>
+
+    </footer>
+
+    <div id="debug" class="hidden">
+      <div id="debugbar"></div>
+      <p class="debug">Debug Mode Enabled - Performance Degraded - Logs Available in Browser JavaScript Console</p>
+    </div>
+
+    <div id="dataengine">
+    </div>
+
+  </body>
+</html>

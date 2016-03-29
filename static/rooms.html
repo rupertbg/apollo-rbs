@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+		<link href="./styles/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" />
+		<link href="./styles/jquery-ui/magnific-popup.css" rel="stylesheet" />
+		<link href="./styles/kendo-ui/kendo.common-material.core.min.css" rel="stylesheet" />
+		<link href="./styles/kendo-ui/kendo.material.min.css" rel="stylesheet" />
+		<link href="./styles/fullcalendar.min.css" rel="stylesheet" />
+		<link href="./styles/fullcalendar.print.css" rel="stylesheet" media="print" />
+		<link href="./styles/scheduler.min.css" rel="stylesheet" />
+		<link href="./styles/normalise.css" rel="stylesheet" />
+		<link href="./styles/dc.min.css" rel="stylesheet" />
+		<link href="./styles/fonts.css" rel="stylesheet" />
+		<link href="./styles/rbs.css" rel="stylesheet" />
+
+		<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="./scripts/socket.io.js"></script>
+		<script type="text/javascript" src="./scripts/kendo/kendo.ui.core.min.js"></script>
+	  <script type="text/javascript" src="./scripts/kendo/kendo.culture.en-NZ.min.js"></script>
+		<script type="text/javascript" src="./scripts/bigSlide.js"></script>
+		<script type="text/javascript" src="./scripts/jquery.sizes.js"></script>
+		<script type="text/javascript" src="./scripts/jquery-ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="./scripts/jquery-ui/jquery.magnific-popup.min.js"></script>
+		<script type="text/javascript" src="./scripts/moment.min.js"></script>
+		<script type="text/javascript" src="./scripts/fullcalendar.custom.js"></script>
+		<script type="text/javascript" src="./scripts/scheduler.min.js"></script>
+		<script type="text/javascript" src="./scripts/d3.min.js"></script>
+		<script type="text/javascript" src="./scripts/crossfilter.min.js"></script>
+		<script type="text/javascript" src="./scripts/dc.min.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-calendars.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-info.js"></script>
+		<script type="text/javascript" src="./scripts/rbs/rbs-resizing.js"></script>
+
+		<title>Resource Booking System</title>
+
+	</head>
+	<body>
+
+	 	<header class="header">
+
+			<a href="/"><h1>Apollo</h1></a>
+
+			<div id="navbuttons">
+				<a href="/">Home</a>
+				<a href="rooms.html">Room Information</a>
+				<a href="data.html">Data Analytics</a>
+        <a href="calendar.html">Calendar</a>
+				<a href="http://www.otago.ac.nz/its/forms/otago106010.html" target="_blank">iPad Bookings</a>
+				<a href="booking.html">Make a Booking</a>
+			</div>
+
+		</header>
+
+    <section id="roomsinfo">
+					<ul id="resourcelist">
+
+					</ul>
+
+				<div id="resourcecontainer">
+
+					<div id="resourceselect">
+						<div id="resourcedetail">
+			        <a class="mobileresourcemenu" href="#" onclick="return false;"><img src="./img/search.png" alt="Mobile Menu"><h1 id="resourcetitle">Select a room to show details</h1></a>
+			        <h3 id="resourcetype"></h3>
+			        <h3 id="resourcecapacity"></h3>
+							<h3 id="resourcefree"></h3>
+			        <p id="resourcedescription"></p>
+						</div>
+					</div>
+					<div id="resourcemap">
+						<a href="./img/levelcmap.jpg"><img id="levelcmap" src="./img/levelcmap.jpg" alt="Level C Map" /></a>
+						<a href="./img/leveldmap.jpg"><img id="leveldmap" src="./img/leveldmap.jpg" alt="Level D Map" /></a>
+					</div>
+			</div>
+
+    </section>
+
+    <footer>
+
+    </footer>
+
+    <div id="debug" class="hidden">
+      <div id="debugbar"></div>
+      <p class="debug">Debug Mode Enabled - Performance Degraded - Logs Available in Browser JavaScript Console</p>
+    </div>
+
+  </body>
+</html>
