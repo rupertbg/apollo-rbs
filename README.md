@@ -20,17 +20,17 @@ A resource booking system for the enterprise, written in JavaScript.
 Edit server.js to suit your needs.
 
     Set your CALDAV credentials
-    `var davicalServer = 'http://yourCALDAVserver.com'
+    var davicalServer = 'http://yourCALDAVserver.com'
     var davicalUser = 'username'
-    var davicalPass = 'password'`
+    var davicalPass = 'password'
 
     Set your SMTP settings for nodemailer (gmail already set up, just enter credentials)
 
-    `var emailerOptions = {
+    var emailerOptions = {
         service: "Gmail",
         auth: {
             user: "yourgmailaddress",
-            pass: "password"`
+            pass: "password"
 
     Set an endpoint for the booking emails to go
     `global.receptionemail = "email-address-where-new-bookings-go"`
