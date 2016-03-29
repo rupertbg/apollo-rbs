@@ -16,32 +16,6 @@ A resource booking system for the enterprise, written in JavaScript. Currently u
 - node.js & npm
 - Your own content
 
-## Layout
-
-### server.js
-- HTTP server
-- Nodemailer (Gmail, SMTP)
-- CALDAV client
-- iCAL -> JSON parser for FullCalendar
-- Socket.io server
-
-### /static/
-- index.html - General landing page
-- rooms.html - Generates a list of resources from rbs-calendars.js
-- calendar.html - FullCalendar viewer for CALDAV client with custom controls
-- data.html - Booking data viewer using dc.js and dynatable.js
-- booking.html - Booking form with realtime access to calendar data
-- booked.html - Landing page after booking, redirects to index after a short time.
-
-### /static/scripts/rbs/
-- rbs-booking.js - Booking page js
-- rbs-calendars.js - Resource information for FullCalendar Scheduler. ResourceID must match the corresponding CALDAV client calendarName.
-- rbs-data.js - Data analysis js
-- rbs-info.js - Room information page js
-- rbs-main.js - FullCalendar page js
-- rbs-resizing.js - Resizing js
-- rbs.js - Global app variables. Debug toggle is in this file.
-
 ## Usage
 
 Edit server.js to suit your needs.
