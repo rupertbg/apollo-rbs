@@ -40,5 +40,7 @@ To toggle debug mode:
 - static/scripts/rbs/rbs.js - `window.debug = boolean`
 
 Run `npm install` to make sure all the modules are installed and up-to-date
+
 To kick off the server run `node server.js`
-Default port is 8080 to suit development
+
+Default port is 8080
