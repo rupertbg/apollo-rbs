@@ -6,30 +6,44 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="./styles/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" />
   <link href="./styles/kendo-ui/kendo.common-material.core.min.css" rel="stylesheet" />
   <link href="./styles/kendo-ui/kendo.material.min.css" rel="stylesheet" />
-  <link href="./styles/fullcalendar.min.css" rel="stylesheet" />
-  <link href="./styles/fullcalendar.print.css" rel="stylesheet" media="print" />
-  <link href="./styles/scheduler.min.css" rel="stylesheet" />
   <link href="./styles/normalise.css" rel="stylesheet" />
   <link href="./styles/fonts.css" rel="stylesheet" />
   <link href="./styles/rbs.css" rel="stylesheet" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicons/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/favicons/manifest.json">
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#12438f">
+  <link rel="shortcut icon" href="/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
 
   <script type="text/javascript" src="./scripts/jquery.min.js"></script>
   <script type="text/javascript" src="./scripts/socket.io.js"></script>
   <script type="text/javascript" src="./scripts/kendo/kendo.ui.core.min.js"></script>
   <script type="text/javascript" src="./scripts/kendo/kendo.culture.en-NZ.min.js"></script>
   <script type="text/javascript" src="./scripts/jquery.sizes.js"></script>
-  <script type="text/javascript" src="./scripts/jquery.valjs.min.js"></script>
-  <script type="text/javascript" src="./scripts/jquery-ui/jquery-ui.min.js"></script>
   <script type="text/javascript" src="./scripts/moment.min.js"></script>
   <script type="text/javascript" src="./scripts/moment-range.min.js"></script>
-  <script type="text/javascript" src="./scripts/fullcalendar.custom.js"></script>
-  <script type="text/javascript" src="./scripts/scheduler.min.js"></script>
-  <script type="text/javascript" src="./scripts/ical.min.js"></script>
   <script type="text/javascript" src="./scripts/rbs/rbs.js"></script>
-  <script type="text/javascript" src="./scripts/rbs/rbs-calendars.js"></script>
+  <script type="text/javascript" src="./scripts/rbs/rbs-socket.js"></script>
+  <script type="text/javascript" src="./scripts/rbs/rbs-resources.js"></script>
   <script type="text/javascript" src="./scripts/rbs/rbs-booking.js"></script>
 
   <title>Resource Booking System</title>
@@ -52,112 +66,133 @@
 
   </header>
 
-  <div id="formheader">
-    <h1>Resource Booking Form</h1>
-    <h2>This form is for staff and students of the University of Otago. External users, including CCDHB staff, please us this <a href="http://www.otago.ac.nz/wellington/about/services/conferencecentre/enquiries/">enquiry form.</a>
-    <br>Once your request has been submitted, reception will be in contact to confirm the booking.</h2>
-  </div>
+  <section class="mainsection">
 
-  <form id="mainform" action="/booking" method="post">
+    <div class="maincontainer">
 
-    <fieldset id="contactinformation">
-      <legend>Contact Details</legend>
-
-      <div id="contactdetails">
-
-        <ul id="contact">
-      		<li><label for="contactname">Organiser Name</label><input id="contactname" class="noenter" placeholder="Required" type="text" name="contactname" required="required"></li>
-          <li><label for="contactdept">Department / Organisation</label><input id="contactdept" placeholder="Required" class="noenter" type="text" name="contactdept" required="required"></li>
-          <li><label for="contactnumber">Phone Number</label><input id="contactnumber" class="noenter" placeholder="Required" type="text" name="contactnumber" required="required"></li>
-          <li><label for="contactemail">Email Address</label><input id="contactemail" placeholder="Required" class="noenter" type="text" name="contactemail" required="required"></li>
-        </ul>
-
+      <div id="formheader">
+        <h2>This form is for staff and students of the University of Otago. External users, including CCDHB staff, please use this <a href="http://www.otago.ac.nz/wellington/about/services/conferencecentre/enquiries/">enquiry form.</a>
+        <br>Once your request has been submitted, reception will be in contact to confirm the booking.</h2>
       </div>
 
-      <!--Booking Request Template-->
+      <form id="mainform" action="/booking" method="post">
 
-      <fieldset class="hidden vevent" id="newevent">
-        <legend>New Booking Request</legend>
+        <fieldset>
+          <legend>Contact Details</legend>
 
-        <img id="removeevent" class="removeevent" src="./img/close.png" alt="Remove booking event">
+          <div id="contactdetails">
 
-        <div id="veventcontainer">
-
-          <p id="miniloading">loading calendars.. please wait..</p>
-
-          <div id="containerdatetime">
+            <ul id="contact">
+          		<li><label for="contactname">Organiser Name</label><input id="contactname" class="noenter" placeholder="Required" type="text" name="contactname" required="required"></li>
+              <li><label for="contactdept">Department / Organisation</label><input id="contactdept" placeholder="Required" class="noenter" type="text" name="contactdept" required="required"></li>
+              <li><label for="contactnumber">Phone Number</label><input id="contactnumber" class="noenter" placeholder="Required" type="text" name="contactnumber" required="required"></li>
+              <li><label for="contactemail">Email Address</label><input id="contactemail" placeholder="Required" class="noenter" type="text" name="contactemail" required="required"></li>
+            </ul>
 
           </div>
 
-          <div id="typecontainer">
+        </fieldset>
+          <!--Booking Request Template-->
 
-            <div id="selectcontainer">
+          <fieldset class="hidden vevent" id="newevent">
+            <legend>New Booking Request</legend>
 
-              <div id="typeselect" class="k-content">
-                <p>Select a date and time to begin searching resources.</p>
+            <img id="removeevent" class="removeevent" src="./img/close.png" alt="Remove booking event">
+
+            <div id="veventdetails">
+
+            </div>
+
+            <div id="veventdescription">
+
+            </div>
+
+            <div id="veventcontainer">
+
+              <p id="miniloading">loading calendars.. please wait..</p>
+
+              <div id="containerdatetime">
+
               </div>
 
-              <div id="typeoptions">
+              <div id="typecontainer">
+
+                <div id="selectcontainer">
+
+                  <div id="typeselect" class="k-content">
+                  </div>
+
+                  <div id="typeoptions">
+
+                  </div>
+
+                  <div id="remotecount">
+
+                  </div>
+
+                  <div id="remotedetails">
+
+                  </div>
+
+                  <div id="roomselect">
+
+                  </div>
+
+                  <div id="attendanceselect">
+
+                  </div>
+
+                  <div id="vidconfdetails">
+
+                  </div>
+
+                </div>
+
+                <div id="roomsmessage">
+
+                </div>
+
+                <div id="bookingrooms">
+
+                </div>
+
+                <div id="resourcesmessage">
+
+                </div>
+
+                <div id="bookingresources">
+
+                </div>
+
+                <div id="extradetails">
+
+                </div>
 
               </div>
 
-              <div id="extratypeoptions">
-
-              </div>
-
             </div>
 
-            <div id="roomsmessage">
+          </fieldset>
 
-            </div>
+          <!---END OF TEMPLATE--->
 
-            <div id="bookingrooms">
+          <div id="vevents"></div>
 
-            </div>
 
-            <div id="resourcesmessage">
 
-            </div>
-
-            <div id="bookingresources">
-
-            </div>
-
-          </div>
-
-          <div id="resourcecal"></div>
-
-          <div id="veventdetails">
-
-          </div>
-
-          <div id="veventdescription">
-
-          </div>
-
+        <div id="formbuttons">
+          <button type="button" id="createevent" value="Add Booking Request">Additional Request</button>
+          <button type="submit" value="Request Booking" class="formsubmit formbutton">Send Requests</button>
         </div>
 
-      </fieldset>
+      </form>
 
-      <!---END OF TEMPLATE--->
+      <div id="formfooter">
+      </div>
 
-      <div id="vevents"></div>
-
-    </fieldset>
-
-
-
-    <div id="formbuttons">
-      <button type="button" id="createevent" value="Add Booking Request">Add Booking Request</button>
-      <button type="button" value="Close" class="formclose formbutton">Close</button>
-      <button type="reset" value="Reset" class="formreset formbutton">Reset</button>
-      <button type="submit" value="Request Booking" class="formsubmit formbutton">Submit Request</button>
     </div>
 
-  </form>
-
-  <div id="formfooter">
-  </div>
+  </section>
 
   <div id="debug" class="hidden">
     <div id="debugbar"></div>

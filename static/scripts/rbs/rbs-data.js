@@ -14,38 +14,55 @@ function generateResourceInfo(eventArray) {
 
   //// Bookings /////
 
-  window.daysDimension = eventData.dimension(function(d) {return d.week;});
+  window.daysDimension = eventData.dimension(function(d) {return d.day;});
+  window.weeksDimension = eventData.dimension(function(d) {return d.week;});
+  window.monthsDimension = eventData.dimension(function(d) {return d.month;});
   var daysGroup =  daysDimension.group()
+  var weeksGroup =  weeksDimension.group()
+  var monthsGroup =  monthsDimension.group()
   var maxGroup = daysGroup.top(1)[0].value
   var minDate = daysDimension.bottom(1)[0].start;
-  var maxDate = daysDimension.top(1)[0].start;
-  var eventsPerDay  = dc.lineChart("#bookingsperday");
+  var maxDate = moment();
+  var eventsPerMonth  = dc.barChart("#bookingspermonth");
+  var eventsPerWeek  = dc.lineChart("#bookingsperweek");
 
   // Chart //
 
-  eventsPerDay
-    .width(550)
-    .height(200)
+  eventsPerMonth
+    .width(650)
+    .height(300)
     .transitionDuration(1000)
-    .margins({top: 10, right: 50, bottom: 25, left: 40})
-    .dimension(daysDimension)
-    .group(daysGroup)
+    .dimension(monthsDimension)
+    .group(monthsGroup)
     .mouseZoomable(false)
     .x(d3.time.scale().domain([new Date(minDate), new Date(maxDate)]))
     .round(d3.time.month.round)
     .xUnits(d3.time.months)
     .elasticY(true)
 
+  eventsPerWeek
+    .width(650)
+    .height(300)
+    .transitionDuration(1000)
+    .dimension(weeksDimension)
+    .group(weeksGroup)
+    .mouseZoomable(false)
+    .x(d3.time.scale().domain([new Date(moment().add(-1, 'year')), new Date(moment())]))
+    .round(d3.time.week.round)
+    .xUnits(d3.time.weeks)
+    .elasticY(true)
+
   window.resourceDimension = eventData.dimension(function(d) {return d.resourceId})
   var resourceGroup = resourceDimension.group()
   var resourcePie  = dc.pieChart('#bookingspiechart');
   resourcePie
-    .width(200)
-    .height(200)
+    .width(650)
+    .height(450)
     .dimension(resourceDimension)
     .group(resourceGroup)
-    .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
-    .renderlet(function (chart) {chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");})
+    .on('renderlet', function (chart) {
+      chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");
+    });
 
   window.resourceTypeDimension = eventData.dimension(function(d) {
     for (var i = 0; i < window.allresources.length; i++) {
@@ -62,31 +79,48 @@ function generateResourceInfo(eventArray) {
   // Chart //
 
   resourceTypePie
-    .width(200)
-    .height(200)
+    .width(650)
+    .height(450)
     .dimension(resourceTypeDimension)
     .group(resourceTypeGroup)
-    .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
-    .renderlet(function (chart) {chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");})
+    .legend(dc.legend().x(0).y(250).itemHeight(15).gap(5))
+    .on('renderlet', function (chart) {
+      chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");
+    });
 
   //// Hours /////
 
-  window.hoursDimension = eventData.dimension(function(d) {return d.week;});
-  var hoursGroup =  hoursDimension.group().reduceSum(function(d) {return d.duration})
-  var maxGroup = hoursGroup.top(1)[0].value
-  var minDate = hoursDimension.bottom(1)[0].start;
-  var maxDate = hoursDimension.top(1)[0].start;
-  var bookingHours  = dc.lineChart("#usagebyhour");
-  bookingHours
-    .width(550)
-    .height(200)
-    .dimension(hoursDimension)
-    .group(hoursGroup)
+  window.hoursMonthsDimension = eventData.dimension(function(d) {return d.month;});
+  window.hoursWeeksDimension = eventData.dimension(function(d) {return d.week;});
+  var hoursMonthsGroup =  hoursMonthsDimension.group().reduceSum(function(d) {return d.duration})
+  var hoursWeeksGroup =  hoursWeeksDimension.group().reduceSum(function(d) {return d.duration})
+  var maxGroup = hoursMonthsGroup.top(1)[0].value
+  var minDate = hoursMonthsDimension.bottom(1)[0].start;
+  var maxDate = moment();
+  var bookingHoursMonth  = dc.barChart("#usagebymonth");
+  var bookingHoursWeek  = dc.lineChart("#usagebyweek");
+  bookingHoursMonth
+    .width(650)
+    .height(300)
+    .dimension(hoursMonthsDimension)
+    .group(hoursMonthsGroup)
     .turnOnControls(true)
     .elasticY(true)
-    .elasticX(true)
     .y(d3.scale.linear().domain([0, maxGroup]))
     .x(d3.time.scale().domain([new Date(minDate), new Date(maxDate)]))
+    .round(d3.time.month.round)
+    .xUnits(d3.time.months)
+    .elasticY(true)
+
+  bookingHoursWeek
+    .width(650)
+    .height(300)
+    .dimension(hoursWeeksDimension)
+    .group(hoursWeeksGroup)
+    .turnOnControls(true)
+    .elasticY(true)
+    .y(d3.scale.linear().domain([0, maxGroup]))
+    .x(d3.time.scale().domain([new Date(moment().add(-1, 'year')), new Date(moment())]))
 
   window.resourceHoursDimension = eventData.dimension(function(d) {return d.resourceId})
   var resourceHoursGroup = resourceHoursDimension.group().reduceSum(function(d) {return d.duration})
@@ -95,12 +129,13 @@ function generateResourceInfo(eventArray) {
   // Chart //
 
   resourceHoursPie
-    .width(200)
-    .height(200)
+    .width(650)
+    .height(450)
     .dimension(resourceHoursDimension)
     .group(resourceHoursGroup)
-    .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
-    .renderlet(function (chart) {chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");})
+    .on('renderlet', function (chart) {
+      chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");
+    });
 
   window.resourceHoursTypeDimension = eventData.dimension(function(d) {
     for (var i = 0; i < window.allresources.length; i++) {
@@ -117,18 +152,20 @@ function generateResourceInfo(eventArray) {
   // Chart //
 
   resourceHoursTypePie
-    .width(200)
-    .height(200)
+    .width(650)
+    .height(450)
     .dimension(resourceHoursTypeDimension)
     .group(resourceHoursTypeGroup)
-    .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
-    .renderlet(function (chart) {chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");})
+    .legend(dc.legend().x(0).y(250).itemHeight(15).gap(5))
+    .on('renderlet', function (chart) {
+      chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");
+    });
 
   //// Data Table ////
 
   var dynatable = $('#datatable').dynatable({
     features: {
-      pushState: true
+      pushState: false
     },
     dataset: {
       records: daysDimension.top(Infinity),
@@ -144,10 +181,6 @@ function generateResourceInfo(eventArray) {
     });
   };
 
-  $(window).resize(function() {
-    refreshTable()
-  });
-
   for (var i = 0; i < dc.chartRegistry.list().length; i++) {
     var chartI = dc.chartRegistry.list()[i];
     chartI.on("filtered", refreshTable);
@@ -155,8 +188,6 @@ function generateResourceInfo(eventArray) {
   refreshTable();
 
   dc.renderAll();
-
-  loading(false)
 
   $('.csvexport').off('click').on('click', function(){
     function download(filename, text) {

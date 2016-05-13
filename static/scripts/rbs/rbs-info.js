@@ -21,6 +21,7 @@ $(document).ready(function() {
   }
   $('#resourcelist a').off('click').on('click', function(){
     window.debugger('[SOCKET] - Sending room status request')
+    $('#resourcefree').empty()
     socket.emit('roomCheck', $(this).attr('id'))
     $('#resourceselect').css('visibility', 'visible')
     j = window.allresources.length;
@@ -59,6 +60,19 @@ $(document).ready(function() {
       $('#leveldmap').css('opacity', '1')
       $('#resourcedescription').html(window.allresources[j].description)
     }
+    else {
+      $('#resourcetitle').html(window.allresources[j].title)
+      $('#resourcetype').html('Category: ' + window.allresources[j].type)
+      if (window.allresources[j].capacity > 0) {
+        $('#resourcecapacity').html('Capacity: ' + window.allresources[j].capacity)
+      }
+      else {
+        $('#resourcecapacity').html('Capacity: N/A')
+      }
+      $('#levelcmap').css('opacity', '1')
+      $('#leveldmap').css('opacity', '1')
+      $('#resourcedescription').html(window.allresources[j].description)
+    }
     $('#resourcemap img').each(function(){
       $(this).parents('a').addClass('image-popup-no-margins');
       $(this).parents('a').magnificPopup({
@@ -76,7 +90,7 @@ $(document).ready(function() {
     		}
     	});
     })
-    if ($(window).width() <= 640) {
+    if ($(window).width() <= 960) {
       $('#resourcelist').hide()
 		}
   })
@@ -99,6 +113,46 @@ $(document).ready(function() {
   })
   $('#resourcelist a').first().click()
   $('.mobileresourcemenu').off('click').on('click', function(){
-    $('#resourcelist').show()
+    $('#resourcelist').show();
   });
+});
+
+// Resizing //
+
+$(document).ready(function () {
+
+	function infoResize() {
+
+		var headerSize = $('header').outerHeight();
+		var footerSize = $('footer').outerHeight();
+		var mapSize = $('#resourcemap').outerHeight();
+		var pageSize = ($(window).height() - headerSize - footerSize);
+		var infoSize = (pageSize - mapSize);
+
+    $('#roomsinfo').css('height', pageSize)
+
+    if ($(window).width() > 960) {
+      if (!$('#resourcemap').css('visibility') == 'hidden') {
+  			$('#resourceselect').css('height', infoSize);
+  		}
+  		else {
+  			$('#resourceselect').css('height', pageSize);
+  		}
+      $('#resourcelist').show()
+			$('#mobileresourcemenu').hide()
+			$('#resourcecontainer').css('width', '')
+    }
+		else if ($(window).width() <= 960) {
+			$('#mobileresourcemenu').show()
+			$('#resourcecontainer').css('width', '100%')
+		}
+		window.debugger('[WINDOWRESIZER] - Info section resized');
+	};
+
+	$(window).resize(function() {
+		infoResize();
+	});
+
+	$(window).trigger('resize');
+
 });
