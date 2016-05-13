@@ -1,5 +1,5 @@
 # Apollo Resource Booking System
-A resource booking system for the enterprise, written in JavaScript. Currently under active development. Mostly working, though some aspects are still in proof-of-concept phase. Documentation is on it's way. Expect filename changes and code clean-up before v1.
+A resource booking system for the enterprise, written in JavaScript.
 
 ## Features
 
@@ -44,9 +44,9 @@ Run `npm install` to make sure all the modules are installed and up-to-date
 
 To kick off the server run `node server.js`
 
-Default port is 8080
+Default port is 3000
 
-Check [Wiki](https://github.com/rupertbg/apollo-rbs/wiki) for thorough information.
+Check [Wiki](https://github.com/rupertbg/apollo-rbs/wiki) for more thorough information.
 
 ## Credits
 
