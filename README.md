@@ -12,7 +12,7 @@ A resource booking system for the enterprise, written in JavaScript.
 - Demo content included (written for University of Otago, Wellington)
 
 ## Requirements 
-- A CALDAV server ([DAViCAL](http://www.davical.org/) works great)
+- [DAViCAL](http://www.davical.org/) server
 - node.js & npm
 - Your own content
 
